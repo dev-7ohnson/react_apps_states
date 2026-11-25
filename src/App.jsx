@@ -2,6 +2,7 @@ import {Counter} from "./components/Counter.jsx";
 import {Converter} from "./components/Converter.jsx";
 import {Products} from "./components/Products.jsx";
 import Myform from "./components/Myform.jsx";
+import FetchedData from "./components/FetchedData.jsx";
 
 function App() {
 
@@ -13,7 +14,8 @@ function App() {
 
       {/*<Converter/>*/}
       {/*  <Products/>*/}
-        <Myform/>
+      {/*  <Myform/>*/}
+        <FetchedData/>
 
     </>
   )

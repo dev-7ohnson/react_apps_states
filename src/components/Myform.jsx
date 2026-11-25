@@ -5,6 +5,7 @@ export default function Myform() {
     const [height, setHeight] = useState("");
     const [bmi, setBmi] = useState(0);
     const [category, setCategory] = useState("");
+    const [flag, setFlag] = useState(false);
 
     function handleHeightChange(e) {
         setHeight(e.target.value);
@@ -20,25 +21,31 @@ export default function Myform() {
             let result = weight / height ** 2;
             result = Math.round(result * 100) / 100;
 
-            setBmi(result)
-            if (result <18.5){
-                setCategory("underweight")
-            }else if(result >18.5 && result< 25){
-                setCategory("Normal")
-            }else if(result >25 && result< 30){
-                setCategory("Overweight")
-            }
-            else if(result >30 && result< 35){
-                setCategory("Obese Class 1")
-            }
-            else if(result >35 && result< 40){
-                setCategory("Obese Class 2")
-            }else{
-              setCategory("Obese Class 3")
-            }
+            setBmi(result);
 
+            if (result < 18.5) {
+                setCategory("Underweight");
+                setFlag(true);
+            } else if (result < 25) {
+                setCategory("Normal");
+                setFlag(false);
+            } else if (result < 30) {
+                setCategory("Overweight");
+                setFlag(true);
+            } else if (result < 35) {
+                setCategory("Obese Class 1");
+                setFlag(true);
+            } else if (result < 40) {
+                setCategory("Obese Class 2");
+                setFlag(true);
+            } else {
+                setCategory("Obese Class 3");
+                setFlag(true);
+            }
         }
     }
+
+    let color = flag ? "text-danger" : "text-success";
 
     return (
         <div className="container">
@@ -65,8 +72,8 @@ export default function Myform() {
                             Calculate
                         </button>
                     </form>
-                    <h3 className="text-center text-success mt-3">BMI is {bmi}</h3>
-                    <p className="text-center">{category}</p>
+                    <h3 className={`text-center mt-3 ${color}`}>BMI is {bmi}</h3>
+                    <p className={`text-center fw-bold ${color}`}>{category}</p>
                 </div>
             </div>
         </div>
